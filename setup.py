@@ -14,7 +14,7 @@ with open('README.md') as readme_file:
 
 # 'setup.py publish' shortcut.
 if sys.argv[-1] == 'publish':
-    os.system('python3 setup.py sdist bdist_wheel')
+    os.system('python2.7 setup.py sdist bdist_wheel')
     os.system('twine upload dist/*')
     sys.exit()
 elif sys.argv[-1] == 'clean':
@@ -42,7 +42,7 @@ setup(
     },
     long_description_content_type='text/markdown',
     long_description=long_description,
-    python_requires='>=3.6',
+    python_requires='>=2.7',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Topic :: Software Development :: Testing',
