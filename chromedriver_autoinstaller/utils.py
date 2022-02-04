@@ -7,8 +7,7 @@ import sys
 import os
 import subprocess
 #import urllib.request
-from urllib2 import urlopen
-import urllib2.error
+import urllib2
 import zipfile
 import xml.etree.ElementTree as elemTree
 import logging
@@ -226,8 +225,8 @@ def download_chromedriver(path = None):
         try:
             response = urlopen(url)
             if response.getcode() != 200:
-                raise urllib2.error.URLError('Not Found')
-        except urllib2.error.URLError:
+                raise urllib2.URLError('Not Found')
+        except urllib2.URLError:
             raise RuntimeError('Failed to download chromedriver archive: {}'.format(url))
         archive = BytesIO(response.read())
         with zipfile.ZipFile(archive) as zip_file:
