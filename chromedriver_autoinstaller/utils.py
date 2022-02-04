@@ -162,7 +162,7 @@ def get_matched_chromedriver_version(version):
     :param version: the version of chrome
     :return: the version of chromedriver
     """
-    doc = urlopen('https://chromedriver.storage.googleapis.com').read()
+    doc = urllib2.urlopen('https://chromedriver.storage.googleapis.com').read()
     root = elemTree.fromstring(doc)
     for k in root.iter('{http://doc.s3.amazonaws.com/2006-03-01}Key'):
         if k.text.find(get_major_version(version) + '.') == 0:
@@ -223,7 +223,7 @@ def download_chromedriver(path = None):
             os.makedirs(chromedriver_dir)
         url = get_chromedriver_url(version=chromedriver_version)
         try:
-            response = urlopen(url)
+            response = urllib2.urlopen(url)
             if response.getcode() != 200:
                 raise urllib2.URLError('Not Found')
         except urllib2.URLError:
