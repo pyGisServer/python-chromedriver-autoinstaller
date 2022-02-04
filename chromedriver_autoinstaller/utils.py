@@ -224,10 +224,10 @@ def download_chromedriver(path = None):
             os.makedirs(chromedriver_dir)
         url = get_chromedriver_url(version=chromedriver_version)
         try:
-            response = urllib.request.urlopen(url)
+            response = urlopen(url)
             if response.getcode() != 200:
-                raise urllib.error.URLError('Not Found')
-        except urllib.error.URLError:
+                raise urllib2.error.URLError('Not Found')
+        except urllib2.error.URLError:
             raise RuntimeError('Failed to download chromedriver archive: {}'.format(url))
         archive = BytesIO(response.read())
         with zipfile.ZipFile(archive) as zip_file:
