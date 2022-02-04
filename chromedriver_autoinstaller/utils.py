@@ -6,8 +6,9 @@ Helper functions for filename and URL generation.
 import sys
 import os
 import subprocess
-import urllib.request
-import urllib.error
+#import urllib.request
+from urllib2 import urlopen
+import urllib2.error
 import zipfile
 import xml.etree.ElementTree as elemTree
 import logging
@@ -162,7 +163,7 @@ def get_matched_chromedriver_version(version):
     :param version: the version of chrome
     :return: the version of chromedriver
     """
-    doc = urllib.request.urlopen('https://chromedriver.storage.googleapis.com').read()
+    doc = urlopen('https://chromedriver.storage.googleapis.com').read()
     root = elemTree.fromstring(doc)
     for k in root.iter('{http://doc.s3.amazonaws.com/2006-03-01}Key'):
         if k.text.find(get_major_version(version) + '.') == 0:
