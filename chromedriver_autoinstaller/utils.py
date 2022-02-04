@@ -204,7 +204,7 @@ def download_chromedriver(path = None):
 
     if path:
         if not os.path.isdir(path):
-            raise ValueError(f'Invalid path: {path}')
+            raise ValueError('Invalid path: {}'.format(path))
         chromedriver_dir = os.path.join(
             os.path.abspath(path),
             major_version
