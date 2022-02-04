@@ -7,7 +7,7 @@ from typing import Optional, AnyStr
 from . import utils
 
 
-def install(cwd: bool = False, path: Optional[AnyStr] = None):
+def install(cwd = False, path = None):
     """
     Appends the directory of the chromedriver binary file to PATH.
 
