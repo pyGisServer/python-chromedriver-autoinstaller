@@ -218,7 +218,7 @@ def download_chromedriver(path = None):
     chromedriver_filepath = os.path.join(chromedriver_dir, chromedriver_filename)
     if not os.path.isfile(chromedriver_filepath) or \
             not check_version(chromedriver_filepath, chromedriver_version):
-        logging.info(f'Downloading chromedriver ({chromedriver_version})...')
+        logging.info('Downloading chromedriver ({})...'.format(chromedriver_version))
         if not os.path.isdir(chromedriver_dir):
             os.makedirs(chromedriver_dir)
         url = get_chromedriver_url(version=chromedriver_version)
@@ -227,7 +227,7 @@ def download_chromedriver(path = None):
             if response.getcode() != 200:
                 raise urllib.error.URLError('Not Found')
         except urllib.error.URLError:
-            raise RuntimeError(f'Failed to download chromedriver archive: {url}')
+            raise RuntimeError('Failed to download chromedriver archive: {}'.format(url))
         archive = BytesIO(response.read())
         with zipfile.ZipFile(archive) as zip_file:
             zip_file.extract(chromedriver_filename, chromedriver_dir)
